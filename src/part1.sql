@@ -9,14 +9,16 @@ CREATE TABLE IF NOT EXISTS main.Friends (
     id serial PRIMARY KEY,
     peer_1 text not null,
     peer_2 text not null,
-    FOREIGN KEY (peer_1, peer_2) REFERENCES main.Peers(nick_name)
+    FOREIGN KEY (peer_1) REFERENCES main.Peers(nick_name),
+    FOREIGN KEY (peer_2) REFERENCES main.Peers(nick_name)
 );
 
 CREATE TABLE IF NOT EXISTS main.Recommendations (
     id serial PRIMARY KEY,
     peer text not null,
     recommended_peer text not null,
-    FOREIGN KEY (peer, recommended_peer) REFERENCES main.Peers(nick_name)
+    FOREIGN KEY (peer) REFERENCES main.Peers(nick_name),
+    FOREIGN KEY (recommended_peer) REFERENCES main.Peers(nick_name)
 );
 
 CREATE TABLE IF NOT EXISTS main.Time_Tracking (
@@ -33,7 +35,8 @@ CREATE TABLE IF NOT EXISTS main.Transferred_Points (
     checking_peer text not null,
     checked_peer text not null,
     points_amount bigint not null,
-    FOREIGN KEY (checked_peer, checking_peer) references main.Peers(nick_name)
+    FOREIGN KEY (checked_peer) references main.Peers(nick_name),
+    FOREIGN KEY (checking_peer) references main.Peers(nick_name)
 );
 
 CREATE TABLE IF NOT EXISTS main.Task (
